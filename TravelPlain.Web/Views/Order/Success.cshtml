@@ -1,0 +1,22 @@
+﻿@model TravelPlain.Web.ViewModels.Order.PlaceViewModel
+@{
+    ViewBag.Title = "Success";
+}
+
+<h2>Success</h2>
+<div class="jumbotron">
+    <h2>Congratulations!</h2>
+    <p>You have successfully ordered a tour @Model.TourTitle.</p>
+    <p>Your order status is now "Registered".</p>
+    <p>Our manager will contact you.</p>
+
+    <div class="btn-group">
+        <a href="@Url.Action("Index", "Manage")" class="btn btn-default">
+            View your orders
+        </a>
+        <a href="@Url.Action("Index", "Tour")" class="btn btn-primary">
+            Back to tours
+        </a>
+    </div>
+</div>
+

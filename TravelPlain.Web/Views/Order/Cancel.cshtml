@@ -1,0 +1,81 @@
+﻿@model TravelPlain.Web.ViewModels.Order.IndexViewModel
+
+@{
+    ViewBag.Title = "Cancel";
+}
+
+<h2>Cancel</h2>
+
+<h3>Are you sure you want to cancel this order?</h3>
+<div>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TourTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TourTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Time)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Time)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+
+            <dd>
+                @switch (Model.Status)
+                {
+                    case TravelPlain.Enums.OrderStatus.Payed:
+                        {
+                            <span class="label label-success">@Model.Status</span>
+                            break;
+                        }
+                    case TravelPlain.Enums.OrderStatus.Cancelled:
+                        {
+                            <span class="label label-default">@Model.Status</span>
+                            break;
+                        }
+                    case TravelPlain.Enums.OrderStatus.Registered:
+                        {
+                            <span class="label label-primary">@Model.Status</span>
+                            break;
+                        }
+                    case TravelPlain.Enums.OrderStatus.Invoiced:
+                        {
+                            <span class="label label-warning">@Model.Status</span>
+                            break;
+                        }
+                }
+            </dd>
+
+
+        </dl>
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <div class="btn-group">
+                @Html.ActionLink("Back to profile", "Index", "Manage", new { @class = "btn btn-primary" })
+                <input type="submit" value="Confirm" class="btn btn-danger" />
+            </div>
+        </div>
+    }
+</div>

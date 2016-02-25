@@ -1,0 +1,60 @@
+﻿@model TravelPlain.Web.ViewModels.Order.PlaceViewModel
+
+@{
+    ViewBag.Title = "Place";
+}
+
+<h2>Place</h2>
+
+
+@using (Html.BeginForm("Place", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <h4>PlaceViewModel</h4>
+    <hr />    
+    <p>You are going to place an order.</p>
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.TourId, new { htmlAttributes = new { @class = "form-control" } })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TourTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.TourTitle)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Price)
+        </div>
+    </div>
+
+    if (Model.YouSave > 0)
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.YouSave, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.YouSave)
+            </div>
+        </div>
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Confirm" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+<div>
+    <a href="@Url.Action("Index", "Tour")" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+         Back to tours
+    </a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
