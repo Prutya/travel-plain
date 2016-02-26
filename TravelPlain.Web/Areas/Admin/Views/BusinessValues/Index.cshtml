@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TravelPlain.Web.Areas.Admin.ViewModels.BusinessValues.IndexViewModel>
+
+@{
+    ViewBag.Title = "Business values history";
+}
+@if (Model.Count() > 0)
+{
+    <h2>Current busines values</h2>
+    <h3>@Html.DisplayNameFor(model => model.DiscountPercentIncrement): <strong>@Html.DisplayFor(model => model.First().DiscountPercentIncrement)%</strong></h3>
+    <h3>@Html.DisplayNameFor(model => model.DiscountPercentCap): <strong>@Html.DisplayFor(model => model.First().DiscountPercentCap)%</strong></h3>
+    <hr />
+    <p>
+        <a href="@Url.Action("Set", "BusinessValues")" class="btn btn-primary">
+            Set new values
+        </a>
+    </p>
+
+    <hr />
+    <h3>Business values history</h3>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountPercentIncrement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountPercentCap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSet)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiscountPercentIncrement)%
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiscountPercentCap)%
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeSet)
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h2>Business values</h2>
+    <hr />
+    <h4 class="text-center">Business values are not configured</h4>
+    <p class="text-center">
+        <a href="@Url.Action("Set", "BusinessValues")" class="btn btn-primary btn-lg">
+            Set new values
+        </a>
+    </p>
+}
