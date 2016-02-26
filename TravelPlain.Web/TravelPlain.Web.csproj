@@ -216,6 +216,13 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BusinessValuesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ControlPanelController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TourController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BusinessValues\IndexViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BusinessValues\SetViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Tour\EditViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -231,7 +238,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Order\IndexViewModel.cs" />
     <Compile Include="ViewModels\Order\PlaceViewModel.cs" />
-    <Compile Include="ViewModels\Tour\CreateViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Tour\CreateViewModel.cs" />
     <Compile Include="ViewModels\Tour\FilterViewModel.cs" />
     <Compile Include="ViewModels\Tour\IndexViewModel.cs" />
   </ItemGroup>
@@ -257,6 +264,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Controllers\TourController.cs" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Tour\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\ControlPanel\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Tour\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessValues\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BusinessValues\Set.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -305,7 +320,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Tour\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Tour\Create.cshtml" />
     <Content Include="Views\Tour\Index.cshtml" />
     <Content Include="Views\Tour\FilterPartial.cshtml" />
     <Content Include="Views\Order\Place.cshtml" />

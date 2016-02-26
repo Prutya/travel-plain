@@ -71,6 +71,7 @@ namespace TravelPlain.Web.App_Start
             kernel.Bind<ITourService>().To<TourService>();
             kernel.Bind<IProfileService>().To<ProfileService>();
             kernel.Bind<IOrderService>().To<OrderService>();
+            kernel.Bind<IBusinessValuesService>().To<BusinessValuesService>();
 
             ConfigureMappings();
         }
@@ -78,7 +79,7 @@ namespace TravelPlain.Web.App_Start
         private static void ConfigureMappings()
         {
             Mapper.CreateMap<TourDTO, ViewModels.Tour.IndexViewModel>();
-            Mapper.CreateMap<ViewModels.Tour.CreateViewModel, TourDTO>();
+            Mapper.CreateMap<Areas.Admin.ViewModels.Tour.CreateViewModel, TourDTO>();
             Mapper.CreateMap<ViewModels.Tour.FilterViewModel, TourFilterDTO>();
             Mapper.CreateMap<TourDTO, ViewModels.Order.PlaceViewModel>()
                 .ForMember(dest =>
@@ -87,6 +88,10 @@ namespace TravelPlain.Web.App_Start
                             src.Title));
             Mapper.CreateMap<ViewModels.Order.PlaceViewModel, OrderDTO>();
             Mapper.CreateMap<OrderDTO, ViewModels.Order.IndexViewModel>();
+            Mapper.CreateMap<TourDTO, Areas.Admin.ViewModels.Tour.EditViewModel>();
+            Mapper.CreateMap<Areas.Admin.ViewModels.Tour.EditViewModel, TourDTO>();
+            Mapper.CreateMap<BusinessValueDTO, Areas.Admin.ViewModels.BusinessValues.IndexViewModel>();
+            Mapper.CreateMap<Areas.Admin.ViewModels.BusinessValues.SetViewModel, BusinessValueDTO>();
         }
     }
 }

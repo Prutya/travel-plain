@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\BusinessValuesDTO.cs" />
     <Compile Include="DTO\TourFilterDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\ProfileDTO.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\ITourService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BusinessValuesService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\TourService.cs" />

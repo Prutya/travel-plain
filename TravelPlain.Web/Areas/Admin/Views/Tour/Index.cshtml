@@ -5,9 +5,13 @@
 
 
 <h2>Tours</h2>
+<a href="@Url.Action("Create", "Tour")" class="btn btn-primary">
+    <span class="glyphicon glyphicon-plus"></span>
+    Create new tour
+</a>
 
 <div id="filter">
-    @Html.Partial("FilterPartial", new TravelPlain.Web.ViewModels.Tour.FilterViewModel())
+    @Html.Partial("~/Views/Tour/FilterPartial.cshtml", new TravelPlain.Web.ViewModels.Tour.FilterViewModel())
 </div>
 
 <hr />
@@ -38,7 +42,7 @@
                         {
                             <img src="~/Content/Images/no_image.jpg" />
                         }
-                    }                    
+                    }
                 </td>
                 <td>
                     <h5>
@@ -77,23 +81,9 @@
                     </h5>
                 </td>
                 <td>
-                    @if (item.IsAvailable)
-                    {
-                        <a href="@Url.Action("Place", "Order", new { tourId = item.Id })" class="btn btn-success">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>
-                            Place order
-                        </a>
-                    }
-                    else
-                    {
-                        <p class="btn btn-default disabled">
-                            <span class="glyphicon glyphicon-remove"></span>
-                            Not available
-                        </p>
-                    }
+                    @Html.ActionLink("Edit", "Edit", "Tour", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
                 </td>
             </tr>
         }
-
     </table>
 </div>

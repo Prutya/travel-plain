@@ -46,6 +46,9 @@ namespace TravelPlain.Business.Infrastructure
                         opts.MapFrom(src =>
                             src.Tour.Title));
             Mapper.CreateMap<OrderDTO, Data.Models.Order>();
+
+            Mapper.CreateMap<BusinessValueDTO, Data.Models.BusinessValue>();
+            Mapper.CreateMap<Data.Models.BusinessValue, BusinessValueDTO>();
         }
     }
 }

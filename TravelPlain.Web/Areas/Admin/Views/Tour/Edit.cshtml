@@ -1,19 +1,22 @@
-﻿@model TravelPlain.Web.ViewModels.Tour.CreateViewModel
+﻿@model TravelPlain.Web.Areas.Admin.ViewModels.Tour.EditViewModel
 
 @{
-    ViewBag.Title = "Create new tour";
+    ViewBag.Title = "Edit tour";
 }
 
-<h2>Create new tour</h2>
+<h2>Edit tour</h2>
 
 
-@using (Html.BeginForm("Create", "Tour", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Tour", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.Id)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -84,13 +87,13 @@
         <div class="form-group">
             @Html.Label("Image", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="Upload" />
+                <input type="file" name="Upload"/>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save changes" class="btn btn-primary" />
             </div>
         </div>
     </div>

@@ -1,0 +1,40 @@
+﻿@model TravelPlain.Web.Areas.Admin.ViewModels.BusinessValues.SetViewModel
+
+@{
+    ViewBag.Title = "Set business values";
+}
+
+<h2>Set business values</h2>
+<div>
+    <a href="@Url.Action("Index", "BusinessValues")" class="btn btn-default">
+        &laquo; Back to history
+    </a>
+</div>
+
+@using (Html.BeginForm("Set", "BusinessValues", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DiscountPercentIncrement, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiscountPercentIncrement, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiscountPercentIncrement, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DiscountPercentCap, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DiscountPercentCap, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DiscountPercentCap, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Set" class="btn btn-primary" />
+        </div>
+    </div>
+}

@@ -7,7 +7,7 @@ namespace TravelPlain.Business.Interfaces
     {
         IEnumerable<TourDTO> Get(TourFilterDTO filter = null);
         TourDTO GetById(int id);
-
-        void Create(TourDTO tourDto);
+        void Create(TourDTO entity);
+        void Update(TourDTO entity);
     }
 }

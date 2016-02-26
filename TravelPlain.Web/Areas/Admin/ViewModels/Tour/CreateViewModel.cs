@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TravelPlain.Enums;
 
-namespace TravelPlain.Web.ViewModels.Tour
+namespace TravelPlain.Web.Areas.Admin.ViewModels.Tour
 {
     public class CreateViewModel
     {

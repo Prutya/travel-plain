@@ -74,16 +74,34 @@ namespace TravelPlain.Business.Services
             return toursDtos;
         }
 
-        public void Create(TourDTO tourDto)
+        public void Create(TourDTO entity) =>
+            _uow.Tours.Add(Mapper.Map<Tour>(entity));
+
+        public void Update(TourDTO entity)
         {
-            var tour = Mapper.Map<Tour>(tourDto);
-            try
+            var tour = _uow.Tours.Get(entity.Id);
+
+            if (tour != null)
             {
-                _uow.Tours.Add(tour);
+                //TODO: use AutoMapper here?
+                tour.Title = entity.Title;
+                tour.Description = entity.Description;
+                tour.Price = entity.Price;
+                tour.PeopleNumber = entity.PeopleNumber;
+                tour.IsHot = entity.IsHot;
+                tour.IsAvailable = entity.IsAvailable;
+                tour.TourType = entity.TourType;
+                tour.HotelType = entity.HotelType;
+                tour.TransferType = entity.TransferType;
+
+                if (entity.ImageName != null)
+                {
+                    tour.ImageName = entity.ImageName;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                throw new ValidationException("Exception \"" + ex.Message + "\" at " + ex.Source);
+                throw new ValidationException("Tour does not exist", string.Empty);
             }
         }
 
