@@ -1,0 +1,95 @@
+﻿@model IEnumerable<TravelPlain.Web.Areas.Admin.ViewModels.Order.IndexViewModel>
+@{
+    ViewBag.Title = "All orders";
+}
+
+<h2>All orders</h2>
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Tour title
+                </th>
+                <th>
+                    Time
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    User email
+                </th>
+                <th>
+                    User name
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        <h4>
+                            @item.TourTitle
+                        </h4>
+                    </td>
+                    <td>
+                        <p>
+                            @item.Time
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            $@item.Price
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            @item.UserEmail
+                        </p>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Index", "Profile", new { userId = item.UserId })">
+                            @item.UserName
+                        </a>
+                    </td>
+                    <td>
+                        @switch (item.Status)
+                        {
+                            case TravelPlain.Enums.OrderStatus.Payed:
+                                {
+                                    <span class="label label-success">@item.Status</span>
+                                    break;
+                                }
+                            case TravelPlain.Enums.OrderStatus.Cancelled:
+                                {
+                                    <span class="label label-default">@item.Status</span>
+                                    break;
+                                }
+                            case TravelPlain.Enums.OrderStatus.Registered:
+                                {
+                                    <span class="label label-primary">@item.Status</span>
+                                    break;
+                                }
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Change status", "ChangeStatus", new { id = item.Id }, new { @class = "btn btn-default" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4 class="text-center">You have placed no orders for now.</h4>
+}

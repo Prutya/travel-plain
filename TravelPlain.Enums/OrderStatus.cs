@@ -2,10 +2,9 @@
 {
     public enum OrderStatus : int
     {
-        NotSpecified = 0,
-        Invoiced = 1,
-        Registered  = 2,
-        Payed = 3,
-        Cancelled = 4
+        NotSpecified = 3,
+        Registered  = 0,
+        Payed = 2,
+        Cancelled = 1
     }
 }

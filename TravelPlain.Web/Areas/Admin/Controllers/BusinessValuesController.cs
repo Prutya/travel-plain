@@ -36,6 +36,7 @@ namespace TravelPlain.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Set(SetViewModel model)
         {
             if (ModelState.IsValid)

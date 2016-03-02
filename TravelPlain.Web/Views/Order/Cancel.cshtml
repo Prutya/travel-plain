@@ -6,7 +6,7 @@
 
 <h2>Cancel</h2>
 
-<h3>Are you sure you want to cancel this order?</h3>
+<h3>Are you sure you want to pay for this order?</h3>
 <div>
     <hr />
 
@@ -59,21 +59,15 @@
                             <span class="label label-primary">@Model.Status</span>
                             break;
                         }
-                    case TravelPlain.Enums.OrderStatus.Invoiced:
-                        {
-                            <span class="label label-warning">@Model.Status</span>
-                            break;
-                        }
                 }
             </dd>
-
 
         </dl>
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <div class="btn-group">
-                @Html.ActionLink("Back to profile", "Index", "Manage", new { @class = "btn btn-primary" })
+                @Html.ActionLink("Back to profile", "Index", "Manage", new { area = "" }, new { @class = "btn btn-primary" })
                 <input type="submit" value="Confirm" class="btn btn-danger" />
             </div>
         </div>

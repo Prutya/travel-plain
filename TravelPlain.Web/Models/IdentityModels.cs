@@ -23,7 +23,7 @@ namespace TravelPlain.Web.Models
         public ApplicationDbContext()
             : base("TravelPlainConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDbContext>());
+            Database.SetInitializer(new ApplicationContextInitializer());
         }
 
         public static ApplicationDbContext Create()

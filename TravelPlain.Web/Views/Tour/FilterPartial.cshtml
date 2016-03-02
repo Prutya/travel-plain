@@ -1,83 +1,84 @@
 ﻿@model TravelPlain.Web.ViewModels.Tour.FilterViewModel
 
 <hr />
-@using (Html.BeginForm("Index", "Tour", FormMethod.Get, new { @class = "form-horizontal" }))
-{
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.DisplayUnavailable, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.DisplayUnavailable)
+<div>
+    <a id="filterToggle" class="btn btn-default">show filter</a>
+</div>
+<div id="filterForm" style="display:none">
+    @using (Html.BeginForm("Index", "Tour", FormMethod.Get, new { @class = "form-horizontal" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisplayUnavailable, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.DisplayUnavailable)
+                </div>
+                @Html.ValidationMessageFor(model => model.DisplayUnavailable, "", new { @class = "text-danger" })
             </div>
-            @Html.ValidationMessageFor(model => model.DisplayUnavailable, "", new { @class = "text-danger" })
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MinPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.MinPrice, new { htmlAttributes = new { @class = "form-control input-sm" } })
-            @Html.ValidationMessageFor(model => model.MinPrice, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MinPrice, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                @Html.ValidationMessageFor(model => model.MinPrice, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MaxPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.MaxPrice, new { htmlAttributes = new { @class = "form-control input-sm" } })
-            @Html.ValidationMessageFor(model => model.MaxPrice, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaxPrice, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                @Html.ValidationMessageFor(model => model.MaxPrice, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MinPeople, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.MinPeople, new { htmlAttributes = new { @class = "form-control input-sm" } })
-            @Html.ValidationMessageFor(model => model.MinPeople, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinPeople, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MinPeople, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                @Html.ValidationMessageFor(model => model.MinPeople, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MaxPeople, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.MaxPeople, new { htmlAttributes = new { @class = "form-control input-sm" } })
-            @Html.ValidationMessageFor(model => model.MaxPeople, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxPeople, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaxPeople, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                @Html.ValidationMessageFor(model => model.MaxPeople, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.HotelType, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.HotelType, new { @class = "form-control input-sm" })
-            @Html.ValidationMessageFor(model => model.HotelType, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.HotelType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.HotelType, new { @class = "form-control input-sm" })
+                @Html.ValidationMessageFor(model => model.HotelType, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.TourType, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.TourType, new { @class = "form-control input-sm" })
-            @Html.ValidationMessageFor(model => model.TourType, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TourType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.TourType, new { @class = "form-control input-sm" })
+                @Html.ValidationMessageFor(model => model.TourType, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.TransferType, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.TransferType, new { @class = "form-control input-sm" })
-            @Html.ValidationMessageFor(model => model.TransferType, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransferType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.TransferType, new { @class = "form-control input-sm" })
+                @Html.ValidationMessageFor(model => model.TransferType, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10 btn-group btn-group-sm">
-            @Html.ActionLink("Reset filter", "Index", "Tour", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
-            <input type="submit" value="Filter" class="btn btn-primary" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 btn-group btn-group-sm">
+                @Html.ActionLink("Reset filter", "Index", "Tour", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+                <input type="submit" value="Filter" class="btn btn-primary" />
+            </div>
         </div>
-    </div>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    }
+</div>

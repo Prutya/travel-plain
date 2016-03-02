@@ -2,20 +2,19 @@
 @{
     ViewBag.Title = "Tours";
 }
-
+@section Scripts{
+    <script src="~/Scripts/filter.js"></script>
+}
 
 <h2>Tours</h2>
 <a href="@Url.Action("Create", "Tour")" class="btn btn-primary">
     <span class="glyphicon glyphicon-plus"></span>
     Create new tour
 </a>
-
-<div id="filter">
-    @Html.Partial("~/Views/Tour/FilterPartial.cshtml", new TravelPlain.Web.ViewModels.Tour.FilterViewModel())
-</div>
-
+@Html.Partial("~/Views/Tour/FilterPartial.cshtml", new TravelPlain.Web.ViewModels.Tour.FilterViewModel())
 <hr />
 <div col-md-8>
+    <p>Total: @Model.Count()</p>
     <table class="table table-striped">
         @foreach (var item in Model)
         {
@@ -81,9 +80,24 @@
                     </h5>
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "Tour", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    <div class="btn-group btn-group-vertical btn-group-sm">
+                        @if (item.IsHot)
+                        {
+                            <a href="@Url.Action("ToggleHot", new { id = item.Id })" class="btn btn-default">
+                                Make usual
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("ToggleHot", new { id = item.Id })" class="btn btn-default">
+                                <span class="glyphicon glyphicon-certificate text-danger"></span>
+                                Make hot
+                            </a>
+                        }
+                        @Html.ActionLink("Edit", "Edit", "Tour", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    </div>
                 </td>
             </tr>
-        }
+                        }
     </table>
 </div>

@@ -92,6 +92,12 @@ namespace TravelPlain.Web.App_Start
             Mapper.CreateMap<Areas.Admin.ViewModels.Tour.EditViewModel, TourDTO>();
             Mapper.CreateMap<BusinessValueDTO, Areas.Admin.ViewModels.BusinessValues.IndexViewModel>();
             Mapper.CreateMap<Areas.Admin.ViewModels.BusinessValues.SetViewModel, BusinessValueDTO>();
+            Mapper.CreateMap<OrderDTO, ViewModels.Order.IndexViewModel>();
+            Mapper.CreateMap<OrderDTO, Areas.Admin.ViewModels.Order.IndexViewModel>()
+                .ForMember(dest =>
+                    dest.UserId, opts =>
+                        opts.MapFrom(src =>
+                            src.ProfileId));
         }
     }
 }

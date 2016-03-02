@@ -107,6 +107,17 @@ namespace TravelPlain.Business.Services
 
         public TourDTO GetById(int id) => Mapper.Map<TourDTO>(_uow.Tours.Get(id));
 
+        public void ToggleHot(int id)
+        {
+            var tour = _uow.Tours.Get()
+                .FirstOrDefault(o => o.Id == id);
+            if (tour == null)
+            {
+                throw new ValidationException("Tour does not exist", "");
+            }
+            tour.IsHot = !tour.IsHot;
+        }
+
         public int SaveChanges() => _uow.SaveChanges();
     }
 }

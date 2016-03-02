@@ -44,7 +44,8 @@ namespace TravelPlain.Business.Services
 
             if (profile.Orders != null && profile.Orders.Count(o => o.Status == Enums.OrderStatus.Payed) > 0)
             {
-                int nextDiscount = profile.Orders.Count * lastBusinessValues.DiscountPercentIncrement;
+                int nextDiscount = profile.Orders.Count(o => o.Status == Enums.OrderStatus.Payed)
+                    * lastBusinessValues.DiscountPercentIncrement;
 
                 if (nextDiscount > lastBusinessValues.DiscountPercentCap)
                 {
@@ -67,6 +68,9 @@ namespace TravelPlain.Business.Services
 
             order.Status = newStatus;
         }
+
+        public void ChangeOrderStatus(int orderId, Enums.OrderStatus newStatus)
+            => ChangeOrderStatus(_uow.Orders.Get(orderId), newStatus);
 
         /// <summary>
         /// Creates new order
@@ -141,6 +145,10 @@ namespace TravelPlain.Business.Services
                 Orders?.
                 ToList()?.
                 Select(o => Mapper.Map<OrderDTO>(o));
+
+        public IEnumerable<OrderDTO> GetAll() => _uow.Orders.Get()
+            .ToList()
+            .Select(o => Mapper.Map<OrderDTO>(o));
 
         /// <summary>
         /// Calculates price for the next user's order of particular tour

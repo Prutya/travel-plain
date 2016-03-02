@@ -104,6 +104,7 @@ namespace TravelPlain.Web.Areas.Admin.Controllers
 
         //[Authorize(Roles = "Admin")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(ViewModels.Tour.EditViewModel model, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
@@ -136,9 +137,27 @@ namespace TravelPlain.Web.Areas.Admin.Controllers
                 catch (ValidationException ex)
                 {
                     ModelState.AddModelError(ex.Property, ex.Message);
-                } 
+                }
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ToggleHot(int? id)
+        {
+            if (id != null)
+            {
+                var tour =
+                    Mapper.Map<Web.ViewModels.Tour.IndexViewModel>(_tourService.GetById(id.Value));
+                if (tour != null)
+                {
+                    _tourService.ToggleHot(id.Value);
+                    _tourService.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
     }
 }

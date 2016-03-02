@@ -2,98 +2,97 @@
 @{
     ViewBag.Title = "Tours";
 }
-
+@section Scripts{
+    <script src="~/Scripts/filter.js"></script>
+}
 
 <h2>Tours</h2>
 
-<div id="filter">
-    @Html.Partial("FilterPartial", new TravelPlain.Web.ViewModels.Tour.FilterViewModel())
-</div>
+@Html.Partial("FilterPartial", new TravelPlain.Web.ViewModels.Tour.FilterViewModel())
 
 <hr />
-<div col-md-8>
-    <table class="table table-striped">
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
-                </td>
-                <td>
-                    <h4>
-                        @if (item.IsHot)
-                        {
-                            <span class="glyphicon glyphicon-certificate text-danger"></span>
-                        }
-                    </h4>
-                </td>
-                <td>
-                    @{
-                        string path = Server.MapPath("~/Content/Images/" + item.ImageName);
-                        if (File.Exists(path))
-                        {
-                            <img src="~/Content/Images/@item.ImageName" />
-                        }
-                        else
-                        {
-                            <img src="~/Content/Images/no_image.jpg" />
-                        }
-                    }                    
-                </td>
-                <td>
-                    <h5>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </h5>
-                </td>
-                <td>
-                    <h4>
-                        <strong>
-                            $@Html.DisplayFor(modelItem => item.Price)
-                        </strong>
-                    </h4>
-                    <h4>
-                        <span class="text-warning">
-                            @if ((int)item.HotelType >= 0 && (int)item.HotelType < 6)
-                            {
-                                @Html.Rating((int)item.HotelType)
-                            }
-                            else
-                            {
-                                @Html.Rating(0)
-                            }
-                        </span>
-                    </h4>
-                    <p>
-                        @Html.DisplayFor(modelItem => item.PeopleNumber)
-                        <span class="glyphicon glyphicon-user"></span>
-                    </p>
-                </td>
-                <td>
-                    <h5>
-                        @Html.DisplayFor(modelItem => item.TourType)
-                    </h5>
-                    <h5>
-                        @Html.DisplayFor(modelItem => item.TransferType)
-                    </h5>
-                </td>
-                <td>
-                    @if (item.IsAvailable)
+<p>Total: @Model.Count()</p>
+<table class="table table-striped">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
+            </td>
+            <td>
+                <h4>
+                    @if (item.IsHot)
                     {
-                        <a href="@Url.Action("Place", "Order", new { tourId = item.Id })" class="btn btn-success">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>
-                            Place order
-                        </a>
+                        <span class="glyphicon glyphicon-certificate text-danger"></span>
+                    }
+                </h4>
+            </td>
+            <td>
+                @{
+                    string path = Server.MapPath("~/Content/Images/" + item.ImageName);
+                    if (File.Exists(path))
+                    {
+                        <img src="~/Content/Images/@item.ImageName" />
                     }
                     else
                     {
-                        <p class="btn btn-default disabled">
-                            <span class="glyphicon glyphicon-remove"></span>
-                            Not available
-                        </p>
+                        <img src="~/Content/Images/no_image.jpg" />
                     }
-                </td>
-            </tr>
-        }
+                }
+            </td>
+            <td>
+                <h5>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </h5>
+            </td>
+            <td>
+                <h4>
+                    <strong>
+                        $@Html.DisplayFor(modelItem => item.Price)
+                    </strong>
+                </h4>
+                <h4>
+                    <span class="text-warning">
+                        @if ((int)item.HotelType >= 0 && (int)item.HotelType < 6)
+                        {
+                            @Html.Rating((int)item.HotelType)
+                        }
+                        else
+                        {
+                            @Html.Rating(0)
+                        }
+                    </span>
+                </h4>
+                <p>
+                    @Html.DisplayFor(modelItem => item.PeopleNumber)
+                    <span class="glyphicon glyphicon-user"></span>
+                </p>
+            </td>
+            <td>
+                <h5>
+                    @Html.DisplayFor(modelItem => item.TourType)
+                </h5>
+                <h5>
+                    @Html.DisplayFor(modelItem => item.TransferType)
+                </h5>
+            </td>
+            <td>
+                @if (item.IsAvailable)
+                {
+                    <a href="@Url.Action("Place", "Order", new { tourId = item.Id })" class="btn btn-success">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        Place order
+                    </a>
+                }
+                else
+                {
+                    <p class="btn btn-default disabled">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Not available
+                    </p>
+                }
+            </td>
+        </tr>
+                    }
 
-    </table>
-</div>
+</table>

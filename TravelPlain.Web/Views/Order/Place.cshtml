@@ -9,8 +9,9 @@
 
 @using (Html.BeginForm("Place", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
 {
+    @Html.AntiForgeryToken()
     <h4>PlaceViewModel</h4>
-    <hr />    
+    <hr />
     <p>You are going to place an order.</p>
 
     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
@@ -51,7 +52,7 @@
 <div>
     <a href="@Url.Action("Index", "Tour")" class="btn btn-default">
         <span class="glyphicon glyphicon-arrow-left"></span>
-         Back to tours
+        Back to tours
     </a>
 </div>
 

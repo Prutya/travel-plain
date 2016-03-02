@@ -143,16 +143,10 @@
                                         <span class="label label-primary">@item.Status</span>
                                         break;
                                     }
-                                case TravelPlain.Enums.OrderStatus.Invoiced:
-                                    {
-                                        <span class="label label-warning">@item.Status</span>
-                                        break;
-                                    }
                             }
                         </td>
                         <td>
-                            @if (item.Status == TravelPlain.Enums.OrderStatus.Registered ||
-item.Status == TravelPlain.Enums.OrderStatus.Invoiced)
+                            @if (item.Status == TravelPlain.Enums.OrderStatus.Registered)
                             {
                                 <a href="@Url.Action("Cancel", "Order", new { id = item.Id })" class="btn btn-warning btn-xs">
                                     Cancel order

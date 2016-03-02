@@ -11,5 +11,6 @@ namespace TravelPlain.Business.Interfaces
     {
         void Create(ProfileDTO entity);
         ProfileDTO Get(string id);
+        IEnumerable<ProfileDTO> GetAll();
     }
 }

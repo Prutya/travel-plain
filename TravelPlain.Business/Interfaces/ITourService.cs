@@ -9,5 +9,6 @@ namespace TravelPlain.Business.Interfaces
         TourDTO GetById(int id);
         void Create(TourDTO entity);
         void Update(TourDTO entity);
+        void ToggleHot(int id);
     }
 }

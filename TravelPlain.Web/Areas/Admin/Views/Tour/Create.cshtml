@@ -6,6 +6,12 @@
 
 <h2>Create new tour</h2>
 
+<div>
+    <a href="@Url.Action("Index", "Tour")" class="btn btn-default">
+        &laquo; Back to list
+    </a>
+</div>
+
 
 @using (Html.BeginForm("Create", "Tour", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -95,11 +101,6 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

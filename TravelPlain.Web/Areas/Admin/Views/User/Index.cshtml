@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TravelPlain.Web.Areas.Admin.ViewModels.User.IndexViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Roles)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+                @Html.HiddenFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                <p>
+                    @if (item.Roles != null)
+                    {
+                        foreach (var role in item.Roles)
+                        {
+                            @Html.Raw(role + " ")
+                        }
+                    }
+                </p>
+            </td>
+            <td>
+                <div class="btn-group-vertical btn-group-xs">
+                    <a href="@Url.Action("AddToRole", "User", new { id = item.Id })" class="btn btn-default">
+                        Add To Role
+                    </a>
+                    <a href="@Url.Action("RemoveFromRole", "User", new { id = item.Id })" class="btn btn-default">
+                        remove from role
+                    </a>
+                    @if (item.LockedOutTill > DateTime.Now)
+                    {
+                        <a href="@Url.Action("RemoveLockout", "User", new { id = item.Id })" class="btn btn-danger">
+                            Unlock
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("SetLockout", "User", new { id = item.Id })" class="btn btn-danger">
+                            Lock out
+                        </a>
+                    }
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

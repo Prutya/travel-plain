@@ -3,6 +3,8 @@ using System;
 using TravelPlain.Business.DTO;
 using TravelPlain.Business.Interfaces;
 using TravelPlain.Data.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TravelPlain.Business.Services
 {
@@ -28,6 +30,11 @@ namespace TravelPlain.Business.Services
             var profile = Mapper.Map<Data.Models.Profile>(entity);
             _uow.Profiles.Add(profile);
         }
+
+        public IEnumerable<ProfileDTO> GetAll() =>
+            _uow.Profiles.Get()
+                .ToList()
+                .Select(o => Mapper.Map<ProfileDTO>(o));
 
         public int SaveChanges() => _uow.SaveChanges();
     }

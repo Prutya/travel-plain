@@ -49,6 +49,7 @@ namespace TravelPlain.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Place(ViewModels.Order.PlaceViewModel model)
         {
             if (ModelState.IsValid)
@@ -79,13 +80,12 @@ namespace TravelPlain.Web.Controllers
                 {
                     if (order.ProfileId == User.Identity.GetUserId())
                     {
-                        if (order.Status == Enums.OrderStatus.Invoiced ||
-                            order.Status == Enums.OrderStatus.Registered)
+                        if (order.Status != Enums.OrderStatus.Cancelled)
                         {
                             var model = Mapper.Map<ViewModels.Order.IndexViewModel>(order);
                             return View(model);
                         }
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
                     }
                     return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
                 }
@@ -95,6 +95,7 @@ namespace TravelPlain.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Cancel(ViewModels.Order.IndexViewModel model)
         {
             if (ModelState.IsValid)

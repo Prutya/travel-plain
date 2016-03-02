@@ -219,10 +219,17 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessValuesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ControlPanelController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\BusinessValues\IndexViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\BusinessValues\SetViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Order\IndexViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Role\IndexViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Tour\EditViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Tour\ToggleHotViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\AddToRoleViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\IndexViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -232,9 +239,11 @@
     </Compile>
     <Compile Include="Helpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationContextInitializer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\filter.js" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Order\IndexViewModel.cs" />
     <Compile Include="ViewModels\Order\PlaceViewModel.cs" />
@@ -272,6 +281,11 @@
     <Content Include="Areas\Admin\Views\Tour\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\BusinessValues\Index.cshtml" />
     <Content Include="Areas\Admin\Views\BusinessValues\Set.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\ChangeStatus.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\AddToRole.cshtml" />
+    <Content Include="Areas\Admin\Views\User\RemoveFromRole.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
