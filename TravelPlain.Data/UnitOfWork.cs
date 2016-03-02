@@ -13,6 +13,7 @@ namespace TravelPlain.Data
         private IGenericRepository<Order> orders;
         private IGenericRepository<Tour> tours;
         private IGenericRepository<BusinessValue> businessValues;
+        private IGenericRepository<LogItem> log;
         private IProfileRepository profiles;
 
         public UnitOfWork(string connectionString)
@@ -51,6 +52,17 @@ namespace TravelPlain.Data
                     businessValues = new GenericRepository<BusinessValue>(_context);
                 }
                 return businessValues;
+            }
+        }
+        public IGenericRepository<LogItem> Log
+        {
+            get
+            {
+                if (log == null)
+                {
+                    log = new GenericRepository<LogItem>(_context);
+                }
+                return log;
             }
         }
         public IProfileRepository Profiles

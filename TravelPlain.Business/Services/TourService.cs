@@ -11,14 +11,11 @@ using TravelPlain.Enums;
 
 namespace TravelPlain.Business.Services
 {
-    public class TourService : ITourService
+    public class TourService : Service, ITourService
     {
-        private readonly IUnitOfWork _uow;
-
         public TourService(IUnitOfWork uow)
-        {
-            _uow = uow;
-        }
+            : base(uow)
+        { }
 
         public IEnumerable<TourDTO> Get(TourFilterDTO filter = null)
         {
@@ -74,8 +71,23 @@ namespace TravelPlain.Business.Services
             return toursDtos;
         }
 
-        public void Create(TourDTO entity) =>
-            _uow.Tours.Add(Mapper.Map<Tour>(entity));
+        public void Create(TourDTO entity)
+        {
+            var tour = _uow.Tours.Add(Mapper.Map<Tour>(entity));
+            Log(string.Format("Created new tour [Id:{0}, Title:{1}, Description:{2}, PeopleNumber:{3}, Price:{4}, IsAvailable:{5}, IsHot:{6}, TourType:{7}, HotelType:{8}, TranfserType:{9}, ImageName:{10}].",
+                tour.Id,
+                tour.Title,
+                tour.Description.Substring(0, 50) + "...",
+                tour.PeopleNumber,
+                tour.Price,
+                tour.IsAvailable,
+                tour.IsHot,
+                tour.TourType,
+                tour.HotelType,
+                tour.TransferType,
+                tour.ImageName
+                ));
+        }
 
         public void Update(TourDTO entity)
         {
@@ -98,6 +110,10 @@ namespace TravelPlain.Business.Services
                 {
                     tour.ImageName = entity.ImageName;
                 }
+
+                Log(string.Format("Updating tour info [Id:{0}].",
+                    tour.Id
+                ));
             }
             else
             {
@@ -116,8 +132,10 @@ namespace TravelPlain.Business.Services
                 throw new ValidationException("Tour does not exist", "");
             }
             tour.IsHot = !tour.IsHot;
+            Log(string.Format("Updating tour [Id:{0}, IsHot:{1}].",
+                    tour.Id,
+                    tour.IsHot
+                ));
         }
-
-        public int SaveChanges() => _uow.SaveChanges();
     }
 }

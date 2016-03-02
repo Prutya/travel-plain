@@ -13,7 +13,7 @@ using TravelPlain.Web.Areas.Admin.ViewModels.User;
 
 namespace TravelPlain.Web.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly IProfileService _profileService;
@@ -113,7 +113,6 @@ namespace TravelPlain.Web.Areas.Admin.Controllers
                          LastName = up != null ? up.LastName : null
                      })
             .ToList();
-
 
             return View(model);
         }

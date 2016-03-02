@@ -11,6 +11,7 @@ using TravelPlain.Web.Areas.Admin.ViewModels.BusinessValues;
 
 namespace TravelPlain.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class BusinessValuesController : Controller
     {
         private readonly IBusinessValuesService _businessValuesService;

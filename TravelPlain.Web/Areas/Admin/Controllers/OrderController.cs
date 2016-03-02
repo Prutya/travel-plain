@@ -12,7 +12,7 @@ using TravelPlain.Business.Interfaces;
 
 namespace TravelPlain.Web.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Manager")]
+    [Authorize(Roles = "Manager")]
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;

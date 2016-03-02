@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace TravelPlain.Web.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Manager")]
+    [Authorize(Roles = "Manager")]
     public class ControlPanelController : Controller
     {
         [HttpGet]

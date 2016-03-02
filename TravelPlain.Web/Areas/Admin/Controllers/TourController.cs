@@ -11,7 +11,7 @@ using TravelPlain.Business.Interfaces;
 
 namespace TravelPlain.Web.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Manager")]
+    [Authorize(Roles = "Manager")]
     public class TourController : Controller
     {
         private readonly ITourService _tourService;
@@ -40,14 +40,14 @@ namespace TravelPlain.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Create()
         {
             return View(new ViewModels.Tour.CreateViewModel());
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ViewModels.Tour.CreateViewModel model, HttpPostedFileBase upload)
@@ -86,7 +86,7 @@ namespace TravelPlain.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -102,7 +102,7 @@ namespace TravelPlain.Web.Areas.Admin.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ViewModels.Tour.EditViewModel model, HttpPostedFileBase upload)

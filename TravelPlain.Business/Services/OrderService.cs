@@ -10,14 +10,11 @@ using TravelPlain.Data.Models;
 
 namespace TravelPlain.Business.Services
 {
-    public class OrderService : IOrderService
+    public class OrderService : Service, IOrderService
     {
-        private readonly IUnitOfWork _uow;
-
         public OrderService(IUnitOfWork uow)
-        {
-            _uow = uow;
-        }
+            : base(uow)
+        { }
 
         private decimal CalculatePrice(Tour tour, Data.Models.Profile profile)
         {
@@ -56,7 +53,6 @@ namespace TravelPlain.Business.Services
             }
 
             return price;
-
         }
 
         private void ChangeOrderStatus(Order order, Enums.OrderStatus newStatus)
@@ -65,7 +61,8 @@ namespace TravelPlain.Business.Services
             {
                 throw new ValidationException("Order does not exist", "Order");
             }
-
+            Log(string.Format("Changing order #{0} status from {1} to {2}.",
+                order.Id, order.Status, newStatus));
             order.Status = newStatus;
         }
 
@@ -89,17 +86,33 @@ namespace TravelPlain.Business.Services
             }
             var profile = _uow.Profiles.Get(data.ProfileId);
 
+            Log(string.Format("Creating new order [ProfileId: {0}, TourId:{1}]",
+                data.ProfileId,
+                data.TourId
+                ));
+
             try
             {
                 var order = Mapper.Map<Order>(data);
                 order.Price = CalculatePrice(tour, profile);
                 order.Status = Enums.OrderStatus.Registered;
                 order.Time = DateTime.Now;
-
+                
                 _uow.Orders.Add(order);
+
+                Log(string.Format("Order created [Status: {0}, Time: {1}, ProfileId:{2}, TourId:{3}]",
+                    order.Status,
+                    order.Time,
+                    order.ProfileId,
+                    order.TourId
+                ));
             }
             catch (ValidationException)
             {
+                Log(string.Format("Error creating new order [ProfileId: {0}, TourId:{1}]",
+                   data.ProfileId,
+                   data.TourId
+                   ));
                 throw;
             }
         }
@@ -167,7 +180,5 @@ namespace TravelPlain.Business.Services
                 throw;
             }
         }
-
-        public int SaveChanges() => _uow.SaveChanges();
     }
 }

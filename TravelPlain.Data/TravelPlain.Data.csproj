@@ -55,6 +55,7 @@
     <Compile Include="Interfaces\IGenericRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Models\BusinessValue.cs" />
+    <Compile Include="Models\LogItem.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Order.cs" />

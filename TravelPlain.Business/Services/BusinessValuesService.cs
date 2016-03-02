@@ -9,21 +9,18 @@ using TravelPlain.Data.Models;
 
 namespace TravelPlain.Business.Services
 {
-    public class BusinessValuesService : IBusinessValuesService
+    public class BusinessValuesService : Service, IBusinessValuesService
     {
-        private readonly IUnitOfWork _uow;
-
         public BusinessValuesService(IUnitOfWork uow)
-        {
-            _uow = uow;
-        }
+            : base(uow)
+        { }
 
-        public IEnumerable<BusinessValueDTO> GetAll() =>
+        public IEnumerable<BusinessValueDTO> GetAll() => 
             _uow.BusinessValues.Get()
                 .ToList()
                 .Select(o => Mapper.Map<BusinessValueDTO>(o));
 
-        public BusinessValueDTO GetLast() =>
+        public BusinessValueDTO GetLast() => 
             Mapper.Map<BusinessValueDTO>(
             _uow.BusinessValues.Get()
                 .OrderByDescending(o => o.TimeSet)
@@ -34,8 +31,8 @@ namespace TravelPlain.Business.Services
             var businessValue = Mapper.Map<BusinessValue>(entity);
             businessValue.TimeSet = DateTime.Now;
             _uow.BusinessValues.Add(businessValue);
+            Log(string.Format("Creating new business values [DiscountPercentCap:{0}, DiscountPercentIncrement:{1}].",
+                businessValue.DiscountPercentCap, businessValue.DiscountPercentIncrement));            
         }
-
-        public int SaveChanges() => _uow.SaveChanges();
     }
 }

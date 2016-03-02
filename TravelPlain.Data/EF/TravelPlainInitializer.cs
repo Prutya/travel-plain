@@ -119,6 +119,8 @@ namespace TravelPlain.Data.EF
                         ImageName = "zurich.jpg"
                     }
                 });
+
+            context.Log.Add(new LogItem("Database seed complete."));
             context.SaveChanges();
         }
     }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using TravelPlain.Data.Models;
 
 namespace TravelPlain.Data.EF
@@ -11,6 +9,7 @@ namespace TravelPlain.Data.EF
         public DbSet<Order> Orders { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<BusinessValue> BusinessValues { get; set; }
+        public DbSet<LogItem> Log { get; set; }
 
         public TravelPlainContext(string connectionString)
             : base(connectionString)

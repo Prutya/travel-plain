@@ -12,6 +12,7 @@ namespace TravelPlain.Data.Interfaces
         IGenericRepository<Order> Orders { get; }
         IGenericRepository<Tour> Tours { get; }
         IGenericRepository<BusinessValue> BusinessValues { get; }
+        IGenericRepository<LogItem> Log { get; }
         IProfileRepository Profiles { get; }
 
         int SaveChanges();
