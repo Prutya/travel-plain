@@ -14,12 +14,14 @@ namespace TravelPlain.Business.Services
         }
 
         public int SaveChanges()
-        {
-            var result = _uow.SaveChanges();
-            Log(string.Format("Saving changes. Rows affected: {0}",
-                result));
-            return result;
+        {            
+            Log(string.Format("Saving changes."));
+            return _uow.SaveChanges();
         }
-        public void Log(string message) => _uow.Log.Add(new LogItem(message));
+        public void Log(string message)
+        {
+            _uow.Log.Add(new LogItem(message));
+            _uow.SaveChanges();
+        }
     }
 }

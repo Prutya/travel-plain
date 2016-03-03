@@ -219,11 +219,13 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BusinessValuesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ControlPanelController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LogController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\BusinessValues\IndexViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\BusinessValues\SetViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Log\IndexViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Order\IndexViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Role\IndexViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Tour\EditViewModel.cs" />
@@ -286,6 +288,7 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\AddToRole.cshtml" />
     <Content Include="Areas\Admin\Views\User\RemoveFromRole.cshtml" />
+    <Content Include="Areas\Admin\Views\Log\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

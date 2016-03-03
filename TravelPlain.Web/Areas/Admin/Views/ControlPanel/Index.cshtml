@@ -16,9 +16,19 @@
         <span class="glyphicon glyphicon-usd"></span>
         Business values
     </a>
-    <a href="@Url.Action("Index", "User")" class="btn btn-primary btn-lg">
-        <span class="glyphicon glyphicon-user"></span>
-        Users
-    </a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="@Url.Action("Index", "User")" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-user"></span>
+            Users
+        </a>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="@Url.Action("Index", "Log")" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-time"></span>
+            Log
+        </a>
+    }
 </div>
 

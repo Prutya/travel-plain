@@ -72,6 +72,7 @@ namespace TravelPlain.Web.App_Start
             kernel.Bind<IProfileService>().To<ProfileService>();
             kernel.Bind<IOrderService>().To<OrderService>();
             kernel.Bind<IBusinessValuesService>().To<BusinessValuesService>();
+            kernel.Bind<ILogService>().To<LogService>();
 
             ConfigureMappings();
         }
@@ -98,6 +99,7 @@ namespace TravelPlain.Web.App_Start
                     dest.UserId, opts =>
                         opts.MapFrom(src =>
                             src.ProfileId));
+            Mapper.CreateMap<LogItemDTO, Areas.Admin.ViewModels.Log.IndexViewModel>();
         }
     }
 }

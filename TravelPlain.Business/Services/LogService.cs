@@ -15,6 +15,7 @@ namespace TravelPlain.Business.Services
 
         public IEnumerable<LogItemDTO> GetAll() =>
             _uow.Log.Get()
+                .ToList()
                 .Select(o => Mapper.Map<LogItemDTO>(o));
 
         public LogItemDTO GetById(int id) =>

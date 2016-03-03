@@ -4,13 +4,12 @@
     ViewBag.Title = "Place";
 }
 
-<h2>Place</h2>
+<h2>Place order</h2>
 
 
 @using (Html.BeginForm("Place", "Order", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
-    <h4>PlaceViewModel</h4>
     <hr />
     <p>You are going to place an order.</p>
 

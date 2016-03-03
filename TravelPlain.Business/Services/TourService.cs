@@ -77,7 +77,7 @@ namespace TravelPlain.Business.Services
             Log(string.Format("Created new tour [Id:{0}, Title:{1}, Description:{2}, PeopleNumber:{3}, Price:{4}, IsAvailable:{5}, IsHot:{6}, TourType:{7}, HotelType:{8}, TranfserType:{9}, ImageName:{10}].",
                 tour.Id,
                 tour.Title,
-                tour.Description.Substring(0, 50) + "...",
+                tour.Description.Length > 50 ? tour.Description.Substring(0, 50) + "..." : tour.Description,
                 tour.PeopleNumber,
                 tour.Price,
                 tour.IsAvailable,
